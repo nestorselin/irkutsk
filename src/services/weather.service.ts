@@ -5,6 +5,7 @@ import { WeatherRepository } from '../repositories/weather.repository';
 import { EventEmitter2 } from '@nestjs/event-emitter';
 import { TemperatureListener } from '../listeners/temperature.listener';
 import { ConfigService } from '@nestjs/config';
+import {WeatherEntity} from "../entities/weather.entity";
 
 @Injectable()
 export class WeatherService {
@@ -54,7 +55,7 @@ export class WeatherService {
     }
   }
 
-  async getSevenDays(): Promise<number[]> {
+  async getSevenDays(): Promise<WeatherEntity[]> {
     return await this.weatherRepository.getSevenDays();
   }
 }

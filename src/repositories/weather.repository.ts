@@ -18,7 +18,7 @@ export class WeatherRepository {
     });
   }
 
-  async getSevenDays(): Promise<number[]> {
+  async getSevenDays(): Promise<WeatherEntity[]> {
     return await this.weatherRepository
       .createQueryBuilder('w')
       .select(['temperature'])
