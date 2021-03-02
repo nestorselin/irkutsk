@@ -11,7 +11,7 @@ export class WeatherProcessor {
     private readonly sendService: SendService,
   ) {}
 
-  @OnEvent('required.temperature')
+  @OnEvent('required.temperature', { async: true })
   async handleOrderCreatedEvent(event: TemperatureListener): Promise<void> {
     const temperature = event.temperature;
     await this.sendService.sendMessage(temperature);

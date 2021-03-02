@@ -10,6 +10,7 @@ import { ScheduleModule } from '@nestjs/schedule';
 import { WeatherEntity } from '../entities/weather.entity';
 import { SendService } from '../services/send.service';
 import { WeatherRepository } from '../repositories/weather.repository';
+import { WeatherProcessor } from '../processors/weather.processor';
 
 @Module({
   imports: [
@@ -36,6 +37,12 @@ import { WeatherRepository } from '../repositories/weather.repository';
   ],
   exports: [WeatherCron, WeatherService, SendService],
   controllers: [WeatherController],
-  providers: [SendService, WeatherService, WeatherCron, WeatherRepository],
+  providers: [
+    SendService,
+    WeatherService,
+    WeatherCron,
+    WeatherRepository,
+    WeatherProcessor,
+  ],
 })
 export class WeatherModule {}

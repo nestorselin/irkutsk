@@ -53,7 +53,7 @@ export class WeatherService {
       return;
     }
 
-    Logger.debug(`Weather saved`)
+    Logger.debug(`Weather saved`);
 
     if (temperatureInCelsius > this.temperature) {
       const event = new TemperatureListener();

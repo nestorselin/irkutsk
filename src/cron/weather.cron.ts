@@ -6,13 +6,13 @@ import { ConfigService } from '@nestjs/config';
 @Injectable()
 export class WeatherCron {
   constructor(
-    private readonly appService: WeatherService,
+    private readonly weatherService: WeatherService,
     private readonly configService: ConfigService,
   ) {}
 
   @Cron(CronExpression.EVERY_10_SECONDS)
   async weather(): Promise<void> {
     const city = this.configService.get<string>('openWeatherCity');
-    return await this.appService.weather(city);
+    return await this.weatherService.weather(city);
   }
 }

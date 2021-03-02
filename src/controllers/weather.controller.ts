@@ -1,12 +1,14 @@
 import { Controller, Get, NotFoundException } from '@nestjs/common';
 import { WeatherService } from '../services/weather.service';
 import { average } from '../helpers/helpers';
-import {SendService} from "../services/send.service";
+import { SendService } from '../services/send.service';
 
 @Controller()
 export class WeatherController {
-  constructor(private readonly weatherService: WeatherService,
-              private readonly sendService: SendService) {}
+  constructor(
+    private readonly weatherService: WeatherService,
+    private readonly sendService: SendService,
+  ) {}
 
   @Get('/average-seven-days')
   async getSevenDays(): Promise<number> {
@@ -17,10 +19,6 @@ export class WeatherController {
     }
 
     const temperatures = weather.map(w => w.temperature);
-    const averageTemperature = average(temperatures);
-
-    await this.sendService.sendMessage(averageTemperature)
-
-    return averageTemperature
+    return average(temperatures);
   }
 }

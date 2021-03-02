@@ -1,8 +1,8 @@
-import { Injectable } from '@nestjs/common';
-import * as sendgrid from '@sendgrid/mail'
+import { Injectable, Logger } from '@nestjs/common';
+import * as sendgrid from '@sendgrid/mail';
 import { MailDataRequired } from '@sendgrid/helpers/classes/mail';
 import { weatherMail } from '../constats/constans';
-import {ConfigService} from "@nestjs/config";
+import { ConfigService } from '@nestjs/config';
 
 @Injectable()
 export class SendService {
@@ -17,6 +17,9 @@ export class SendService {
       ...weatherMail,
       text: `WOW ${temperature}`,
     };
+
+    Logger.debug(`Message created`);
+
     await sendgrid.send(massage);
   }
 }
