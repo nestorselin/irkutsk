@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { WeatherEntity } from '../entities/weather.entity';
-import { LessThan, MoreThan, Repository } from 'typeorm';
+import { Repository } from 'typeorm';
 import { sevenDays } from '../helpers/helpers';
 import { CreateDto } from '../dto/create.dto';
 

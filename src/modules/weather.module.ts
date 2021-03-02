@@ -2,7 +2,7 @@ import { HttpModule, Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 import { config } from '../configs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { EventEmitter2, EventEmitterModule } from '@nestjs/event-emitter';
+import { EventEmitterModule } from '@nestjs/event-emitter';
 import { WeatherController } from '../controllers/weather.controller';
 import { WeatherService } from '../services/weather.service';
 import { WeatherCron } from '../cron/weather.cron';
