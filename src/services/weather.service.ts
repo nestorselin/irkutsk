@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, Logger } from '@nestjs/common';
 import axios, { AxiosInstance } from 'axios';
 import { kelvinToCelsius } from '../helpers/helpers';
 import { WeatherRepository } from '../repositories/weather.repository';
@@ -41,12 +41,17 @@ export class WeatherService {
       params: { q: city },
     });
 
-    const temperatureInKelvin = response.data.main.temp;
+    const temperatureInKelvin = response?.data?.main?.temp;
     const temperatureInCelsius = kelvinToCelsius(temperatureInKelvin);
 
     const weather = await this.weatherRepository.save({
       temperature: temperatureInCelsius,
     });
+
+    if (!weather) {
+      Logger.debug('Did not save(');
+      return;
+    }
 
     if (temperatureInCelsius > this.temperature) {
       const event = new TemperatureListener();
