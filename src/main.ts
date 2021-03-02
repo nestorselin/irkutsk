@@ -5,9 +5,7 @@ import { useContainer } from 'class-validator';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 
 async function bootstrap(): Promise<void> {
-  const app = await NestFactory.create(WeatherModule, {
-    bodyParser: false,
-  });
+  const app = await NestFactory.create(WeatherModule);
   const configService = app.get(ConfigService);
   const options = new DocumentBuilder()
     .setTitle('IRKUTSK')

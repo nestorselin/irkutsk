@@ -1,8 +1,8 @@
 import { Injectable } from '@nestjs/common';
-import sendgrid from '@sendgrid/mail';
+import * as sendgrid from '@sendgrid/mail'
 import { MailDataRequired } from '@sendgrid/helpers/classes/mail';
 import { weatherMail } from '../constats/constans';
-import { ConfigService } from '@nestjs/config';
+import {ConfigService} from "@nestjs/config";
 
 @Injectable()
 export class SendService {
@@ -12,7 +12,7 @@ export class SendService {
     this.sendGridApiKey = this.configService.get<string>('sendGridApiKey');
   }
   async sendMessage(temperature) {
-    sendgrid.setApiKey(this.sendGridApiKey);
+    await sendgrid.setApiKey(this.sendGridApiKey);
     const massage: MailDataRequired = {
       ...weatherMail,
       text: `WOW ${temperature}`,
